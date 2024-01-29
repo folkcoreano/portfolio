@@ -70,7 +70,7 @@ body {
 
 @keyframes show {
   0% {
-    translate: 0 -1rem;
+    translate: 0 -2rem;
   }
 
   100% {
@@ -79,14 +79,17 @@ body {
   }
 }
 
+.animate {
+  animation: show 700ms ease-in-out forwards;
+}
+
 .project {
   opacity: 0;
-  animation: show 1000ms ease-in-out forwards;
   display: flex;
   flex-flow: column;
   gap: 0.55rem;
 
-  max-width: 40rem;
+  max-width: 35rem;
 
   padding-inline: 1rem;
   padding-block: 0.65rem;
@@ -124,6 +127,7 @@ body {
 }
 
 .project-image {
+  width: 100%;
   display: block;
 
   object-fit: cover;
@@ -132,9 +136,6 @@ body {
   border-radius: 0.25rem;
 
   cursor: pointer;
-
-  width: 100%;
-  max-width: 40rem;
 }
 
 .project-tags {
@@ -161,8 +162,8 @@ body {
 }
 
 .profile {
-  animation: show 500ms ease-in-out forwards;
   opacity: 0;
+  animation: show 500ms ease-in-out forwards;
 
   padding-top: 2rem;
   padding-bottom: 1rem;
@@ -204,4 +205,11 @@ body {
     text-decoration-thickness: 2px;
     text-underline-offset: 3px;
   }
+}
+
+.year {
+  color: #aaa;
+  font-size: 1.15rem;
+  text-decoration: none;
+  display: none;
 }
