@@ -79,7 +79,7 @@ body {
   }
 }
 
-.animate {
+.project-animate {
   animation: show 700ms ease-in-out forwards;
 }
 
@@ -230,10 +230,10 @@ body {
 }
 
 .year {
-  color: #aaa;
+  color: #bbb;
   font-size: 1.15rem;
   text-decoration: none;
-  display: none;
+  font-weight: 600;
 }
 
 .project-link {
@@ -252,4 +252,11 @@ body {
 .email {
   text-align: center;
   padding-bottom: 1rem;
+}
+
+.project-head {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
 }
