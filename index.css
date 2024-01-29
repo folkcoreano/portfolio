@@ -171,14 +171,15 @@ body {
   background-image: linear-gradient(#333, #222);
   border-radius: 0.25rem;
   padding-inline: 0.45rem;
-  padding-bottom: 0.25rem;
+  padding-bottom: 0.15rem;
 
   transition: all 150ms ease-in-out;
 
-  border: 1px solid #444;
+  border: 2px solid #333;
 
   &:hover {
     background-image: linear-gradient(#222, #333);
+    border: 2px solid #444;
   }
 }
 
