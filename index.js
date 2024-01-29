@@ -39,6 +39,8 @@ const projects = [
     tags: [
       "vercel",
       "vue",
+      "pwa",
+      "imagekit",
       "tailwind",
       "typescript",
       "javascript",
@@ -96,7 +98,15 @@ const projects = [
     url: "https://folkcoreano.itch.io/cartas-para-quem",
     description:
       "Um jogo onde você trabalha como um mago que escreve cartas em uma estação de trem.",
-    tags: ["aseprite", "godot", "gdscript", "pixelart", "jogo", "obsidian"],
+    tags: [
+      "aseprite",
+      "godot",
+      "gdscript",
+      "pixelart",
+      "jogo",
+      "obsidian",
+      "itch.io",
+    ],
     position: "top",
   },
   {
@@ -106,7 +116,15 @@ const projects = [
     icon: "ovidex.png",
     url: "https://ovidex.deno.dev",
     description: "Um site guia para o jogo Ovivim.",
-    tags: ["deno", "deno-deploy", "javascript", "typescript", "vue", "site"],
+    tags: [
+      "deno",
+      "deno-deploy",
+      "javascript",
+      "typescript",
+      "vue",
+      "site",
+      "imagekit",
+    ],
     position: "top",
   },
   {
@@ -124,6 +142,8 @@ const projects = [
       "javascript",
       "deno-deploy",
       "github-actions",
+      "site",
+      "api",
     ],
     position: "center",
   },
@@ -142,6 +162,8 @@ const projects = [
       "javascript",
       "deno-deploy",
       "github-actions",
+      "site",
+      "api",
     ],
     position: "center",
   },
@@ -160,6 +182,8 @@ const projects = [
       "javascript",
       "deno-deploy",
       "github-actions",
+      "site",
+      "api",
     ],
     position: "center",
   },
@@ -167,8 +191,8 @@ const projects = [
 
 const el = ({
   elementName,
-  textContent,
   className,
+  textContent,
   childNode,
   objectPosition,
   href,
@@ -203,7 +227,11 @@ const create_elements = (project) => {
     const tags = [];
     for (const tag of project.tags.sort()) {
       tags.push(
-        el({ elementName: "div", className: ["project-tag"], textContent: tag })
+        el({
+          elementName: "div",
+          className: ["project-tag"],
+          textContent: tag,
+        })
       );
     }
     return el({
@@ -216,13 +244,12 @@ const create_elements = (project) => {
   return el({
     elementName: "div",
     className: ["project", "animate"],
-    animationDelay: project.delay,
     childNode: [
       el({
         elementName: "a",
+        className: ["project-title"],
         href: project.url,
         target: "_blank",
-        className: ["project-title"],
         childNode: [
           el({
             elementName: "span",
@@ -248,9 +275,9 @@ const create_elements = (project) => {
       }),
       el({
         elementName: "a",
+        className: ["project-title"],
         href: project.url,
         target: "_blank",
-        className: ["project-title"],
         childNode: [
           el({
             elementName: "img",
@@ -266,35 +293,43 @@ const create_elements = (project) => {
         className: ["project-description"],
         textContent: project.description,
       }),
+      el({
+        elementName: "a",
+        className: ["project-link"],
+        textContent: project.url,
+        href: project.url,
+        target: "_blank",
+      }),
       project_tags(),
     ],
   });
 };
 
-const projects_list = [];
+const project_array = [];
 
 for (const project of projects) {
-  projects_list.push(create_elements(project));
+  project_array.push(create_elements(project));
 }
 
 block.appendChild(
   el({
     elementName: "div",
     className: ["projects"],
-    childNode: projects_list,
+    childNode: project_array,
   })
 );
 
-const project_array = document.querySelectorAll(".project");
-
 const observer = new IntersectionObserver((entries) => {
   for (const entry of entries) {
-    entry.isIntersecting
-      ? entry.target.classList.add("animate")
-      : entry.target.classList.remove("animate");
+    const project = entry.target.classList;
+    entry.isIntersecting ? project.add("animate") : project.remove("animate");
   }
 });
 
 for (const project of project_array) {
   observer.observe(project);
+
+  const project_image = project.querySelector(".project-image").classList;
+  project.onmouseenter = () => project_image.add("image-hover");
+  project.onmouseleave = () => project_image.remove("image-hover");
 }
